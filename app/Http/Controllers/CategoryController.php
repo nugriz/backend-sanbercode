@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,7 +16,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
-        $books = $category->books();
+        $books = Book::all()->where('category_id', $category->id);
 
         return response()->json([
             'category' => $category,

@@ -12,11 +12,6 @@ class BookController extends Controller
         return Book::all();
     }
 
-    public function show($id)
-    {
-        return Book::find($id);
-    }
-
     public function store(Request $request)
     {
         $book = Book::create($request->all());

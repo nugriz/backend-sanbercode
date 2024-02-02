@@ -15,8 +15,8 @@ class Book extends Model
         'release_year',
         'price',
         'total_page',
-        'thickness'
-
+        'thickness',
+        'category_id'
     ];
 
     public function category()
