@@ -14,6 +14,14 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->total_page <= 100) {
+            $request['thickness'] = 'tipis';
+        } elseif ($request->total_page > 100 && $request->total_page <= 200) {
+            $request['thickness'] = 'sedang';
+        } else {
+            $request['thickness'] = 'tebal';
+        }
+        
         $book = Book::create($request->all());
 
         return response()->json($book, 201);
@@ -21,6 +29,14 @@ class BookController extends Controller
 
     public function update(Request $request, $id)
     {
+        if ($request->total_page <= 100) {
+            $request['thickness'] = 'tipis';
+        } elseif ($request->total_page > 100 && $request->total_page <= 200) {
+            $request['thickness'] = 'sedang';
+        } else {
+            $request['thickness'] = 'tebal';
+        }
+        
         $book = Book::findOrFail($id);
         $book->update($request->all());
 
