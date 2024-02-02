@@ -14,6 +14,10 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->release_year < 1980 || $request->release_year > 2021) {
+            return response()->json(['message'=> 'tahun rilis salah'], 400);
+        }
+
         if ($request->total_page <= 100) {
             $request['thickness'] = 'tipis';
         } elseif ($request->total_page > 100 && $request->total_page <= 200) {
@@ -29,6 +33,10 @@ class BookController extends Controller
 
     public function update(Request $request, $id)
     {
+        if ($request->release_year < 1980 || $request->release_year > 2021) {
+            return response()->json(['message'=> 'tahun rilis salah'], 400);
+        }
+        
         if ($request->total_page <= 100) {
             $request['thickness'] = 'tipis';
         } elseif ($request->total_page > 100 && $request->total_page <= 200) {
@@ -36,7 +44,7 @@ class BookController extends Controller
         } else {
             $request['thickness'] = 'tebal';
         }
-        
+
         $book = Book::findOrFail($id);
         $book->update($request->all());
 
