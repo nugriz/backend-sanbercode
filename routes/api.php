@@ -22,4 +22,9 @@ Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
+    Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'index']);
+    Route::post('/categories', [\App\Http\Controllers\CategoryController::class, 'store']);
+    Route::patch('/categories/{id}', [\App\Http\Controllers\CategoryController::class, 'update']);
+    Route::delete('/categories/{id}', [\App\Http\Controllers\CategoryController::class, 'delete']);
+    Route::get('/categories/{id}/books', [\App\Http\Controllers\CategoryController::class, 'show']);
 });

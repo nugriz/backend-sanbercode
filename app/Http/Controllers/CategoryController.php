@@ -14,7 +14,13 @@ class CategoryController extends Controller
 
     public function show($id)
     {
-        return Category::find($id);
+        $category = Category::find($id);
+        $books = $category->books();
+
+        return response()->json([
+            'category' => $category,
+            'books' => $books
+        ], 201);
     }
 
     public function store(Request $request)
