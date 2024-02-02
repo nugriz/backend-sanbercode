@@ -27,4 +27,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/categories/{id}', [\App\Http\Controllers\CategoryController::class, 'update']);
     Route::delete('/categories/{id}', [\App\Http\Controllers\CategoryController::class, 'delete']);
     Route::get('/categories/{id}/books', [\App\Http\Controllers\CategoryController::class, 'show']);
+    Route::get('/books', [\App\Http\Controllers\BookController::class, 'index']);
+    Route::post('/books', [\App\Http\Controllers\BookController::class, 'store']);
+    Route::patch('/books/{id}', [\App\Http\Controllers\BookController::class, 'update']);
+    Route::delete('/books/{id}', [\App\Http\Controllers\BookController::class, 'delete']);
 });
