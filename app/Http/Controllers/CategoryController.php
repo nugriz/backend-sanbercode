@@ -17,6 +17,29 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $books = Book::all()->where('category_id', $category->id);
+        if ($request->query('title')) {
+            $books = $books->where('title', 'like', $request->query('title'));
+        }
+
+        if ($request->query('sortByTitle')) {
+            $books = $request->query('sortByTitle') == 'asc' ? $books->sortBy('title') : $books->sortByDesc('title');
+        }
+
+        if ($request->query('minYear')) {
+            $books = $books->where('release_year', '>=', $request->query('minYear'));
+        }
+
+        if ($request->query('maxYear')) {
+            $books = $books->where('release_year', '<=', $request->query('maxYear'));
+        }
+
+        if ($request->query('minPage')) {
+            $books = $books->where('total_page', '>=', $request->query('minPage'));
+        }
+
+        if ($request->query('maxPage')) {
+            $books = $books->where('total_page', '<=', $request->query('maxPage'));
+        }
 
         return response()->json([
             'category' => $category,
