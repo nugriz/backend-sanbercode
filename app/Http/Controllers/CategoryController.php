@@ -13,7 +13,7 @@ class CategoryController extends Controller
         return Category::all();
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $category = Category::find($id);
         $books = Book::all()->where('category_id', $category->id);
