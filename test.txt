@@ -1,1 +1,0 @@
-sudo apt install php-cli php-fpm php-json php-pdo php-pgsql php-zip php-gd  php-mbstring php-curl php-xml php-bcmath php-json
